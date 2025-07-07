@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ======================================================= -->
+    <!-- Head & Dependencies -->
+    <!-- ======================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Warcraft - Wrath of the Lich King</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts for WoW-like aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js for interactive components like the slider and nav menu -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom inline styles to replicate the vintage WoW look -->
+    <style>
+        .font-wow { font-family: 'Uncial Antiqua', cursive; letter-spacing: 1px; }
+        .font-serif-wow { font-family: 'Merriweather', serif; }
+
+        /* Simulating the outer page border/frame from the original design */
+        .page-frame {
+            background-color: #0c1117;
+            border: 2px solid;
+            border-image-source: linear-gradient(to bottom, #5a687a, #1a2533);
+            border-image-slice: 1;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        
+        /* Simulating the classic beveled border effect on panels */
+        .bevel-border {
+            border: 1px solid;
+            border-color: #6b7f94 #1e2a37 #1e2a37 #6b7f94;
+        }
+        .bevel-border-inset {
+            border: 1px solid;
+            border-color: #1e2a37 #6b7f94 #6b7f94 #1e2a37;
+        }
+
+        /* Custom styling for the left nav to match the reference */
+        .nav-header {
+            background: linear-gradient(to bottom, #2a3a4a, #1a2a38);
+            cursor: pointer;
+        }
+        .news-card-header {
+            background: linear-gradient(to bottom, #e0d6c0, #d4c3a3);
+            border-bottom: 1px solid #b3a180;
+        }
+        .panel-header-blue {
+            background: linear-gradient(to bottom, #2c3e50, #1a2a38);
+            border-bottom: 1px solid #4a5568;
+        }
+        .panel-content-blue {
+            background-color: rgba(13, 23, 36, 0.5);
+        }
+        .ornate-border {
+            border: 1px solid #4a3a2a;
+            background-color: #1a120b;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+
+<body style="background-image: url('https://images7.alphacoders.com/320/thumb-1920-320621.jpg'); background-repeat: repeat;" class="bg-gray-900">
+
+    <!-- ======================================================= -->
+    <!-- Main Page Container -->
+    <!-- This div wraps the entire visible website content, providing the outer frame. -->
+    <!-- ======================================================= -->
+    <div class="max-w-screen-xl mx-auto my-4 p-1 page-frame">
+        
+        <!-- ======================================================= -->
+        <!-- Top Bar -->
+        <!-- Contains top-level navigation links, language selector, and search bar. -->
+        <!-- ======================================================= -->
+        <header class="h-8 bg-black bg-opacity-30 flex items-center justify-between px-4 border-b-2 border-black">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-xs text-blue-300 hover:text-white font-bold">WorldofWarcraft.com</a>
+                <a href="#" class="text-xs text-blue-300 hover:text-white font-bold">The Armory</a>
+                <a href="#" class="text-xs text-blue-300 hover:text-white font-bold">Forums</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-xs text-gray-400 hover:text-white">English (US) <i class="fas fa-caret-down"></i></a>
+                <div class="flex">
+                    <input type="text" placeholder="Search" class="px-2 py-0.5 text-xs bg-gray-900 border border-gray-600 text-white focus:outline-none focus:border-blue-400">
+                    <button class="px-2 bg-gradient-to-b from-blue-700 to-blue-800 hover:from-blue-600 hover:to-blue-700 border border-blue-600">
+                        <i class="fas fa-search text-white text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- ======================================================= -->
+        <!-- Main Layout Grid -->
+        <!-- This grid defines the three-column structure of the page. -->
+        <!-- ======================================================= -->
+        <div class="grid grid-cols-1 lg:grid-cols-[210px_1fr_250px] gap-3 mt-3">
+
+            <!-- ======================================================= -->
+            <!-- Left Sidebar Navigation -->
+            <!-- ======================================================= -->
+            <aside>
+                <!-- Character Portrait -->
+                <div class="w-full h-56 bg-cover bg-center bevel-border" style="background-image: url('https://cdn2.steamgriddb.com/icon_thumb/80cfbf53d537457298be2f3ffc1831d0.png')"></div>
+
+                <!-- Interactive Vertical Navigation Menu -->
+                <nav class="mt-2 text-yellow-300 font-wow space-y-1" 
+                     x-data="{ 
+                        openMenu: 'Game Guide',
+                        menus: [
+                            { name: 'News', icon: 'fa-newspaper' },
+                            { name: 'Account', icon: 'fa-user-circle' },
+                            { name: 'Game Guide', icon: 'fa-book-open' },
+                            { name: 'Workshop', icon: 'fa-cogs' },
+                            { name: 'Media', icon: 'fa-photo-video' },
+                            { name: 'Forums', icon: 'fa-comments' },
+                            { name: 'Community', icon: 'fa-users' },
+                            { name: 'Support', icon: 'fa-life-ring' }
+                        ]
+                     }">
+                    <template x-for="menu in menus" :key="menu.name">
+                        <div>
+                            <h2 @click="openMenu = (openMenu === menu.name ? '' : menu.name)" class="nav-header px-3 py-1 text-lg flex justify-between items-center bevel-border">
+                                <div class="flex items-center">
+                                    <i class="fas fa-fw" :class="menu.icon + ' mr-2'"></i>
+                                    <span x-text="menu.name"></span>
+                                </div>
+                                <i class="fas" :class="openMenu === menu.name ? 'fa-minus' : 'fa-plus'"></i>
+                            </h2>
+                            <ul x-show="openMenu === menu.name" x-transition class="text-sm text-white bg-blue-900 bg-opacity-40 p-2 bevel-border border-t-0">
+                                <!-- Detailed links for News -->
+                                <template x-if="menu.name === 'News'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Current News</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Archived News</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Awards and Honors</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Press Releases</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Account -->
+                                <template x-if="menu.name === 'Account'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Create Account</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Manage Account</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Retrieve Password</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Character Move</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Paid Char Transfer</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Recruit-A-Friend</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Scroll of Resurrection</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Parental Controls</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Realm Status</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Public Test Realm</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Game Guide -->
+                                <template x-if="menu.name === 'Game Guide'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Game Guide</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Introduction</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Getting Started</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Character</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Reputations</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Items</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- The World</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Transportation</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Player Interaction</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Player vs Player</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- FAQ</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1 pl-4">- Story</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Wrath of Lich King</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Burning Crusade</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Under Development</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Previous Patches</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Workshop -->
+                                <template x-if="menu.name === 'Workshop'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Armory</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Arena</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Talent Calculators</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Events Calendar</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Armor Sets</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Maps</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Toplists</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Battlegroups</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Media -->
+                                <template x-if="menu.name === 'Media'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Overview</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Screenshots</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Movies</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Music</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Wallpapers</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Other Downloads</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Gadgetzan Times</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Blizzard Store</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Promotion</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">BlizzCast</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Mobile</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Forums -->
+                                <template x-if="menu.name === 'Forums'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Index</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Blizz Tracker</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">General</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Class Forums</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Realm Forums</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Guild Recruitment</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Guild Relations</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Support</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Community -->
+                                <template x-if="menu.name === 'Community'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Overview</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Comics</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Machinima</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Player Stories</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Contests</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Guild Relations</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Real-Life Events</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Fan Art</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Fansites</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Fan Wallpapers</a></li>
+                                    </div>
+                                </template>
+                                <!-- Detailed links for Support -->
+                                <template x-if="menu.name === 'Support'">
+                                    <div>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Support News</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Account Admin</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Billing and Account</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Technical Support</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">In-Game Support</a></li>
+                                        <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Support Tools</a></li>
+                                        <li><a href="#" class="hover:text-yellow-300 block py-1">Game Policies</a></li>
+                                    </div>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </nav>
+            </aside>
+
+            <!-- ======================================================= -->
+            <!-- Center Content Area -->
+            <!-- ======================================================= -->
+            <main>
+                <!-- WoW Logo Header -->
+                <header class="w-full h-32 mb-2 bg-contain bg-no-repeat bg-center" style="background-image: url('https://placehold.co/728x92/00000000/FFFFFF?text=World+of+Warcraft&font=uncial+antiqua');"></header>
+
+                <!-- Promotional Slider -->
+                <div x-data="{ activeSlide: 1, totalSlides: 3, interval: 9000 }" x-init="setInterval(() => { activeSlide = (activeSlide % totalSlides) + 1 }, interval)" class="relative w-full h-48 bevel-border bg-black overflow-hidden">
+                    <div class="absolute inset-0 flex transition-transform duration-500 ease-in-out" :style="`transform: translateX(-${(activeSlide - 1) * 100}%)`">
+                        <div class="w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://placehold.co/800x192/1a2a38/a0c4ff?text=Slide+1+Art')"><div class="w-full h-full bg-black bg-opacity-40 flex flex-col justify-center items-center text-center p-4"><h3 class="font-wow text-3xl text-white text-shadow-lg">IN STORES 11.13.08</h3><button class="mt-2 px-4 py-1 font-bold text-white bg-blue-700 hover:bg-blue-600 bevel-border">PRE-ORDER NOW</button></div></div>
+                        <div class="w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://placehold.co/800x192/3d1a38/ffa0c4?text=Slide+2+Art')"><div class="w-full h-full bg-black bg-opacity-40 flex flex-col justify-center items-center text-center p-4"><h3 class="font-wow text-3xl text-white text-shadow-lg">DEATH KNIGHTS UNLEASHED</h3><button class="mt-2 px-4 py-1 font-bold text-white bg-red-700 hover:bg-red-600 bevel-border">LEARN MORE</button></div></div>
+                        <div class="w-full h-full flex-shrink-0 bg-cover bg-center" style="background-image: url('https://placehold.co/800x192/1a382a/a0ffc4?text=Slide+3+Art')"><div class="w-full h-full bg-black bg-opacity-40 flex flex-col justify-center items-center text-center p-4"><h3 class="font-wow text-3xl text-white text-shadow-lg">JOURNEY TO NORTHREND</h3><button class="mt-2 px-4 py-1 font-bold text-white bg-green-700 hover:bg-green-600 bevel-border">EXPLORE</button></div></div>
+                    </div>
+                    <div class="absolute bottom-2 right-2 flex space-x-2">
+                        <button @click="activeSlide = activeSlide > 1 ? activeSlide - 1 : totalSlides" class="px-2 py-0.5 text-xs bg-black bg-opacity-50 text-white bevel-border">&lt; BACK</button>
+                        <button @click="activeSlide = activeSlide < totalSlides ? activeSlide + 1 : 1" class="px-2 py-0.5 text-xs bg-black bg-opacity-50 text-white bevel-border">NEXT &gt;</button>
+                    </div>
+                </div>
+
+                <!-- Main Article Section with Collapsible News Cards -->
+                <article class="mt-3 p-4 space-y-4" style="background-image: url('https://placehold.co/800x1200/fdf6e4/000000?text=+');">
+                    
+                    <!-- News Card 1 -->
+                    <div class="bevel-border-inset" x-data="{ open: true }">
+                        <header @click="open = !open" class="news-card-header p-2 flex justify-between items-center cursor-pointer">
+                            <h1 class="font-wow text-xl text-blue-900">Sam Raimi to Direct Warcraft Film</h1>
+                            <button class="text-blue-900 hover:text-black"><i class="fas" :class="open ? 'fa-minus' : 'fa-plus'"></i></button>
+                        </header>
+                        <div x-show="open" x-transition class="p-3 bg-repeat" style="background-image: url('https://placehold.co/100x100/fdf6e4/e8d8b0?text=')">
+                            <p class="text-xs text-gray-600 border-b border-gray-300 pb-2 mb-3">Posted by Blizzard <span class="text-gray-400">07-22-09</span></p>
+                            <p class="font-serif-wow text-gray-800 text-sm">We're pleased to announce that Sam Raimi, famed director of the blockbuster Spider-Man series, has signed on to bring the forces of the Horde and the Alliance to life on the big screen in the upcoming live-action film based on the Warcraft universe. Check out the press release for all of the details!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- News Card 2 -->
+                    <div class="bevel-border-inset" x-data="{ open: false }">
+                        <header @click="open = !open" class="news-card-header p-2 flex justify-between items-center cursor-pointer">
+                            <h1 class="font-wow text-xl text-blue-900">New Fan Art</h1>
+                            <button class="text-blue-900 hover:text-black"><i class="fas" :class="open ? 'fa-minus' : 'fa-plus'"></i></button>
+                        </header>
+                        <div x-show="open" x-transition class="p-3 bg-repeat" style="background-image: url('https://placehold.co/100x100/fdf6e4/e8d8b0?text=')">
+                            <p class="text-xs text-gray-600 border-b border-gray-300 pb-2 mb-3">Posted by Nebu <span class="text-gray-400">07-22-09</span></p>
+                            <p class="font-serif-wow text-gray-800 text-sm">The Blizzard Fan Art Section has been updated with 3 new artwork from World of Warcraft.</p>
+                        </div>
+                    </div>
+
+                    <!-- News Card 3 -->
+                    <div class="bevel-border-inset" x-data="{ open: false }">
+                        <header @click="open = !open" class="news-card-header p-2 flex justify-between items-center cursor-pointer">
+                            <h1 class="font-wow text-xl text-blue-900">BlizzCon Tournament Brackets</h1>
+                            <button class="text-blue-900 hover:text-black"><i class="fas" :class="open ? 'fa-minus' : 'fa-plus'"></i></button>
+                        </header>
+                        <div x-show="open" x-transition class="p-3 bg-repeat" style="background-image: url('https://placehold.co/100x100/fdf6e4/e8d8b0?text=')">
+                            <p class="text-xs text-gray-600 border-b border-gray-300 pb-2 mb-3">Posted by Nebu <span class="text-gray-400">07-22-09</span></p>
+                            <p class="font-serif-wow text-gray-800 text-sm">The brackets for the Warcraft III and World of Warcraft Arena tournaments at BlizzCon are now live. These brackets show the starting matches and also provide some information about the contestants who will be competing in this year's BlizzCon tournaments.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- News Archives Button -->
+                    <div class="text-center py-2">
+                        <button class="px-4 py-1 font-bold text-yellow-800 bg-stone-300 hover:bg-stone-400 bevel-border">VIEW NEWS ARCHIVES</button>
+                    </div>
+
+                    <!-- Three Column Teaser Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+                        <!-- Contests -->
+                        <div class="ornate-border p-1"><div class="bg-black p-2"><h3 class="font-wow text-yellow-400 text-center">Contests</h3><img src="https://placehold.co/200x100/400/FFF?text=Contest+Art" class="w-full h-24 object-cover my-2 bevel-border-inset"><a href="#" class="block text-right text-blue-400 hover:text-white text-sm font-bold">MORE &raquo;</a></div></div>
+                        <!-- Fan Art -->
+                        <div class="ornate-border p-1"><div class="bg-black p-2"><h3 class="font-wow text-yellow-400 text-center">Fan Art</h3><img src="https://placehold.co/200x100/800/FFF?text=Fan+Art" class="w-full h-24 object-cover my-2 bevel-border-inset"><a href="#" class="block text-right text-blue-400 hover:text-white text-sm font-bold">MORE &raquo;</a></div></div>
+                        <!-- Wallpapers -->
+                        <div class="ornate-border p-1"><div class="bg-black p-2"><h3 class="font-wow text-yellow-400 text-center">Wallpapers</h3><img src="https://placehold.co/200x100/040/FFF?text=Wallpaper+Art" class="w-full h-24 object-cover my-2 bevel-border-inset"><a href="#" class="block text-right text-blue-400 hover:text-white text-sm font-bold">MORE &raquo;</a></div></div>
+                    </div>
+
+                    <!-- Community Spotlight -->
+                    <div class="ornate-border p-1">
+                        <div class="panel-header-blue p-2"><h2 class="font-wow text-xl text-yellow-300">Community Spotlight</h2></div>
+                        <div class="panel-content-blue p-3">
+                            <h3 class="font-serif-wow font-bold text-lg text-white">Win A Real Tankard O' Terror!</h3>
+                            <p class="text-xs text-gray-400 mb-2">Nethaera on 10/05/10</p>
+                            <div class="flex gap-4">
+                                <div class="font-serif-wow text-sm text-gray-300 space-y-3">
+                                    <p>Still no Tankard O' Terror of your own? Have no fear, The Instance is running a contest in which you could win one to add to your collection!</p>
+                                    <p>Have you made or seen something that you think deserves to be on the Community Watch? Send us a link at <a href="#" class="text-blue-400 hover:underline">wowcommwatch@blizzard.com</a>.</p>
+                                </div>
+                                <img src="https://placehold.co/100x100/0c1117/a0c4ff?text=Tankard" class="w-24 h-24 object-cover bevel-border-inset flex-shrink-0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Modules Section -->
+                    <div class="mt-4 space-y-4">
+                        <!-- Support & Jobs -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="ornate-border p-1">
+                                <a href="#" class="block hover:opacity-90">
+                                    <div class="panel-header-blue p-2"><h3 class="font-wow text-yellow-300">Need Help?</h3></div>
+                                    <div class="panel-content-blue p-2 h-24 bg-cover bg-center" style="background-image: url('https://placehold.co/250x96/0d1724/FFFFFF?text=Gnome+Support');"></div>
+                                </a>
+                            </div>
+                            <div class="ornate-border p-1">
+                                <a href="#" class="block hover:opacity-90">
+                                    <div class="panel-header-blue p-2"><h3 class="font-wow text-yellow-300">Jobs</h3></div>
+                                    <div class="panel-content-blue p-2 h-24 bg-cover bg-center" style="background-image: url('https://placehold.co/250x96/0d1724/FFFFFF?text=Blizzard+is+Hiring');"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Expansions & Media -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="ornate-border p-1"><div class="panel-header-blue p-2"><h3 class="font-wow text-yellow-300">Cataclysm & Wrath</h3></div><ul class="panel-content-blue p-3 text-sm text-white">
+                                <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Stonecore</a></li>
+                                <li><a href="#" class="hover:text-yellow-300 block py-1">Archaeology</a></li>
+                            </ul></div>
+                            <div class="ornate-border p-1"><div class="panel-header-blue p-2"><h3 class="font-wow text-yellow-300">Movies and Trailers</h3></div><ul class="panel-content-blue p-3 text-sm text-white">
+                                <li class="border-b border-blue-800/40"><a href="#" class="hover:text-yellow-300 block py-1">Fall of the Lich King</a></li>
+                                <li><a href="#" class="hover:text-yellow-300 block py-1">Secrets of Ulduar</a></li>
+                            </ul></div>
+                        </div>
+                        <!-- Insider & Store -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="ornate-border p-1"><div class="panel-header-blue p-2"><h3 class="font-wow text-yellow-300">Blizzard Insider</h3></div><div class="panel-content-blue p-3 text-sm text-gray-300">Your #1 source for behind-the-scenes info. <a href="#" class="text-blue-400 hover:underline">Subscribe now</a>.</div></div>
+                            <div class="ornate-border p-1"><div class="panel-header-blue p-2"><h3 class="font-wow text-yellow-300">Online Store</h3></div><div class="panel-content-blue p-3 text-sm text-gray-300">World of Warcraft Magazine and more. <a href="#" class="text-blue-400 hover:underline">Visit the store</a>.</div></div>
+                        </div>
+                    </div>
+
+                </article>
+
+            </main>
+
+            <!-- ======================================================= -->
+            <!-- Right Sidebar -->
+            <!-- Contains promotional boxes, quick links, and screenshot of the day. -->
+            <!-- ======================================================= -->
+            <aside class="space-y-3">
+                <!-- Promo Box 1 -->
+                <div class="bevel-border bg-cover bg-center h-32" style="background-image: url('https://placehold.co/250x128/1a2a38/a0c4ff?text=WotLK+Box+Art')">
+                    <div class="w-full h-full flex items-end justify-center pb-2 bg-gradient-to-t from-black/80 to-transparent">
+                        <button class="font-bold text-white px-3 py-1 bg-blue-600 hover:bg-blue-500 bevel-border text-sm">DOWNLOAD NOW</button>
+                    </div>
+                </div>
+
+                <!-- Promo Box 2 -->
+                <div class="bevel-border bg-cover bg-center h-32" style="background-image: url('https://placehold.co/250x128/3d1a38/ffa0c4?text=Arena+Banner+Art')">
+                    <div class="w-full h-full flex items-end justify-center pb-2 bg-gradient-to-t from-black/80 to-transparent">
+                        <button class="font-bold text-white px-3 py-1 bg-red-600 hover:bg-red-500 bevel-border text-sm">ENTER THE ARENA</button>
+                    </div>
+                </div>
+                
+                <!-- Quick Links Box -->
+                <div class="font-wow text-yellow-300">
+                    <h2 class="nav-header px-3 py-1 text-lg bevel-border">Quick Links</h2>
+                    <div class="bg-blue-900 bg-opacity-40 p-2 bevel-border border-t-0">
+                        <ul class="grid grid-cols-2 gap-x-2 text-sm text-white">
+                            <li><a href="#" class="hover:text-yellow-300 block py-1"><i class="fas fa-user-circle fa-fw mr-1 text-blue-300"></i> Account</a></li>
+                            <li><a href="#" class="hover:text-yellow-300 block py-1"><i class="fas fa-life-ring fa-fw mr-1 text-blue-300"></i> Support</a></li>
+                            <li><a href="#" class="hover:text-yellow-300 block py-1"><i class="fas fa-shield-alt fa-fw mr-1 text-blue-300"></i> Parental</a></li>
+                            <li><a href="#" class="hover:text-yellow-300 block py-1"><i class="fas fa-server fa-fw mr-1 text-blue-300"></i> Realm Status</a></li>
+                            <li><a href="#" class="hover:text-yellow-300 block py-1"><i class="fas fa-key fa-fw mr-1 text-blue-300"></i> Password</a></li>
+                            <li><a href="#" class="hover:text-yellow-300 block py-1"><i class="fas fa-file-alt fa-fw mr-1 text-blue-300"></i> Patch Notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Screenshot of the Day Box -->
+                <div class="bevel-border bg-gray-800 bg-opacity-30 p-0.5">
+                    <div class="border border-gray-900 bg-black bg-opacity-20 p-3">
+                        <h3 class="font-wow text-lg text-yellow-300 mb-2">Screenshot of the Day</h3>
+                        <a href="#">
+                            <div class="bevel-border-inset bg-cover bg-center h-36" style="background-image: url('https://placehold.co/250x150/0c1117/FFFFFF?text=Icecrown+Citadel')"></div>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>

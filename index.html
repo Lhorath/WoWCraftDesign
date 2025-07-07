@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ======================================================= -->
+    <!--                  HEAD & DEPENDENCIES                    -->
+    <!-- ======================================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Fantasy - Responsive Layout</title>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Arial&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js for interactive components -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="includes/style/style.css">
+
+</head>
+<body class="bg-[#5d170b] font-body body-background">
+
+    <!-- ======================================================= -->
+    <!--               CENTERED PAGE WRAPPER                     -->
+    <!-- ======================================================= -->
+    <div class="w-full max-w-screen-xl mx-auto my-0 sm:my-4">
+
+        <!-- ======================================================= -->
+        <!--                        LOGO                             -->
+        <!-- ======================================================= -->
+        <div class="w-full flex justify-center py-4">
+            <a href="./">
+                <img src="https://dnd.nerdygamertools.com/style/images/logo.png" alt="Site Logo - Modern Fantasy" class="logo-img">
+            </a>
+        </div>
+
+        <!-- ======================================================= -->
+        <!--                 MAIN PAGE CONTAINER                     -->
+        <!-- ======================================================= -->
+        <div class="p-1 page-frame rounded-lg">
+            
+            <!-- ======================================================= -->
+            <!--                       TOP BAR                         -->
+            <!-- ======================================================= -->
+            <header class="h-auto bg-black bg-opacity-30 flex flex-col sm:flex-row items-center justify-between px-4 py-2 sm:h-10 border-b-2 border-[#221502]/50 rounded-t-md">
+                <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+                    <a href="#" class="text-sm font-heading text-[#a1722f] hover:text-[#b98d4a]">The Realm</a>
+                    <a href="#" class="text-sm font-heading text-[#a1722f] hover:text-[#b98d4a]">Chronicles</a>
+                    <a href="#" class="text-sm font-heading text-[#a1722f] hover:text-[#b98d4a]">Tavern</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-sm text-[#a1722f]/75 hover:text-[#a1722f]">English (US) <i class="fas fa-caret-down"></i></a>
+                    <div class="flex">
+                        <input type="text" placeholder="Search" class="px-2 py-1 text-sm bg-[#221502] border border-[#221502] text-[#a1722f] focus:outline-none focus:border-[#a1722f] rounded-l-md w-32 sm:w-auto">
+                        <button class="px-3 bg-[#221502] hover:bg-[#401a11] border border-[#221502] rounded-r-md font-heading">
+                            <i class="fas fa-search text-[#a1722f] text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ======================================================= -->
+            <!--                MODERN NAVIGATION BAR                    -->
+            <!-- ======================================================= -->
+            <nav class="bg-[#221502] border-b-2 border-[#221502]/50" x-data="{ isOpen: false, openDropdown: '' }">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-center h-16">
+                        <div class="flex items-center">
+                            <div class="hidden md:block">
+                                <div class="ml-4 flex items-baseline space-x-1">
+                                    <!-- Game Dropdown -->
+                                    <div class="relative" @mouseleave="openDropdown = ''">
+                                        <button @mouseover="openDropdown = 'game'" class="font-heading text-[#a1722f] hover:text-white px-3 py-2 rounded-md text-xl">The Game <i class="fas fa-caret-down fa-xs"></i></button>
+                                        <div x-show="openDropdown === 'game'" x-transition class="absolute z-10 -ml-4 mt-1 w-48 rounded-md shadow-lg bg-[#221502] ring-1 ring-black ring-opacity-5">
+                                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                <a href="#" class="block px-4 py-2 text-sm text-[#a1722f]/90 hover:bg-[#5d170b] hover:text-[#a1722f] font-heading" role="menuitem">Kingdoms</a>
+                                                <a href="#" class="block px-4 py-2 text-sm text-[#a1722f]/90 hover:bg-[#5d170b] hover:text-[#a1722f] font-heading" role="menuitem">Races</a>
+                                                <a href="#" class="block px-4 py-2 text-sm text-[#a1722f]/90 hover:bg-[#5d170b] hover:text-[#a1722f] font-heading" role="menuitem">Classes</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="font-heading text-[#a1722f] hover:text-white px-3 py-2 rounded-md text-xl">Tournaments</a>
+                                    <a href="#" class="font-heading text-[#a1722f] hover:text-white px-3 py-2 rounded-md text-xl">Marketplace</a>
+                                    <a href="#" class="font-heading text-[#a1722f] hover:text-white px-3 py-2 rounded-md text-xl">Scrolls</a>
+                                    <a href="#" class="font-heading text-[#a1722f] hover:text-white px-3 py-2 rounded-md text-xl">Support</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="-mr-2 flex md:hidden">
+                            <button @click="isOpen = !isOpen" type="button" class="bg-[#5d170b]/50 inline-flex items-center justify-center p-2 rounded-md text-[#a1722f] hover:text-white hover:bg-[#5d170b] focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                                <span class="sr-only">Open main menu</span>
+                                <i class="fas" :class="isOpen ? 'fa-times' : 'fa-bars'"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div x-show="isOpen" class="md:hidden" id="mobile-menu">
+                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                        <a href="#" class="font-heading text-[#a1722f] hover:text-white block px-3 py-2 rounded-md text-base">The Game</a>
+                        <a href="#" class="font-heading text-[#a1722f] hover:text-white block px-3 py-2 rounded-md text-base">Tournaments</a>
+                        <a href="#" class="font-heading text-[#a1722f] hover:text-white block px-3 py-2 rounded-md text-base">Marketplace</a>
+                        <a href="#" class="font-heading text-[#a1722f] hover:text-white block px-3 py-2 rounded-md text-base">Scrolls</a>
+                        <a href="#" class="font-heading text-[#a1722f] hover:text-white block px-3 py-2 rounded-md text-base">Support</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- ======================================================= -->
+            <!--                  MAIN LAYOUT GRID                       -->
+            <!-- ======================================================= -->
+            <div class="grid grid-cols-1 lg:grid-cols-[250px_1fr] xl:grid-cols-[250px_1fr_300px] gap-3 pt-3 bg-[#5d170b]/30">
+
+                <!-- ======================================================= -->
+                <!--               LEFT SIDEBAR NAVIGATION                   -->
+                <!-- ======================================================= -->
+                <aside class="w-full lg:w-[250px] space-y-3">
+                    <!-- Promo Box 2 -->
+                    <div class="relative shadow-lg h-40 rounded-md overflow-hidden">
+                        <img src="https://dnd.nerdygamertools.com/style/images/dice.jpg" alt="Enter the Arena" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="relative w-full h-full flex items-end justify-center pb-3 bg-gradient-to-t from-black/80 to-transparent rounded-md">
+                            <button class="font-heading font-bold text-[#a1722f] px-4 py-2 bg-[#221502] hover:bg-[#401a11] shadow-md text-sm rounded-md">ENTER THE ARENA</button>
+                        </div>
+                    </div>
+                    <!-- Interactive Vertical Navigation Menu -->
+                    <nav class="text-[#a1722f] space-y-1" 
+                         x-data="{ 
+                             openMenu: 'Game Guide',
+                             menus: [
+                                 { name: 'News', icon: 'fa-newspaper' },
+                                 { name: 'Account', icon: 'fa-user-circle' },
+                                 { name: 'Game Guide', icon: 'fa-book-open' },
+                                 { name: 'Workshop', icon: 'fa-cogs' },
+                                 { name: 'Media', icon: 'fa-photo-video' },
+                                 { name: 'Forums', icon: 'fa-comments' },
+                                 { name: 'Community', icon: 'fa-users' },
+                                 { name: 'Support', icon: 'fa-life-ring' }
+                             ]
+                         }">
+                        <template x-for="menu in menus" :key="menu.name">
+                            <div class="rounded-md overflow-hidden">
+                                <h2 @click="openMenu = (openMenu === menu.name ? '' : menu.name)" class="panel-header px-3 py-2 text-lg flex justify-between items-center shadow-lg font-heading">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-fw" :class="menu.icon + ' mr-2'"></i>
+                                        <span x-text="menu.name"></span>
+                                    </div>
+                                    <i class="fas fa-xs" :class="openMenu === menu.name ? 'fa-minus' : 'fa-plus'"></i>
+                                </h2>
+                                <ul x-show="openMenu === menu.name" x-transition class="text-sm text-[#a1722f]/90 bg-[#221502]/50 p-2 shadow-inner">
+                                    <!-- Links for each section -->
+                                    <template x-if="menu.name === 'News'">
+                                        <div>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5">Current News</a></li>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5">Archived News</a></li>
+                                            <li><a href="#" class="hover:text-[#a1722f] block py-1.5">Press Releases</a></li>
+                                        </div>
+                                    </template>
+                                    <template x-if="menu.name === 'Account'">
+                                        <div>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5">Manage Account</a></li>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5">Create Account</a></li>
+                                            <li><a href="#" class="hover:text-[#a1722f] block py-1.5">Parental Controls</a></li>
+                                        </div>
+                                    </template>
+                                    <template x-if="menu.name === 'Game Guide'">
+                                        <div>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5 pl-4">- Introduction</a></li>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5 pl-4">- Getting Started</a></li>
+                                            <li class="border-b border-[#221502]/60"><a href="#" class="hover:text-[#a1722f] block py-1.5 pl-4">- The World</a></li>
+                                            <li><a href="#" class="hover:text-[#a1722f] block py-1.5 pl-4">- Story</a></li>
+                                        </div>
+                                    </template>
+                                    <template x-if="!['News', 'Account', 'Game Guide'].includes(menu.name)">
+                                        <li><a href="#" class="hover:text-[#a1722f] block py-1.5" x-text="`All ${menu.name}`"></a></li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+                    </nav>
+                </aside>
+
+                <!-- ======================================================= -->
+                <!--                 CENTER CONTENT AREA                     -->
+                <!-- ======================================================= -->
+                <main>
+                    <!-- Promotional Slider -->
+                    <div x-data="{ activeSlide: 1, totalSlides: 3, interval: 9000 }" x-init="setInterval(() => { activeSlide = (activeSlide % totalSlides) + 1 }, interval)" class="relative w-full h-64 shadow-lg bg-black overflow-hidden rounded-md">
+                        <div class="slider-container absolute inset-0 flex transition-transform duration-500 ease-in-out" :style="`transform: translateX(-${(activeSlide - 1) * 100}%)`">
+                            <!-- Slide 1 -->
+                            <div class="relative w-full h-full flex-shrink-0">
+                                <img src="https://dnd.nerdygamertools.com/style/images/sheet.jpg" alt="A New Age Dawns" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="relative w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-4">
+                                    <h3 class="font-heading text-4xl text-[#a1722f] text-shadow">A NEW AGE DAWNS</h3>
+                                    <button class="mt-3 px-5 py-2 font-bold text-[#a1722f] bg-[#221502] hover:bg-[#401a11] shadow-md rounded-md font-heading">LEARN MORE</button>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="relative w-full h-full flex-shrink-0">
+                                <img src="https://dnd.nerdygamertools.com/style/images/dice.jpg" alt="Forge Your Legend" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="relative w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-4">
+                                    <h3 class="font-heading text-4xl text-[#a1722f] text-shadow">FORGE YOUR LEGEND</h3>
+                                    <button class="mt-3 px-5 py-2 font-bold text-[#a1722f] bg-[#221502] hover:bg-[#401a11] shadow-md rounded-md font-heading">CREATE A CHARACTER</button>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="relative w-full h-full flex-shrink-0">
+                                <img src="https://dnd.nerdygamertools.com/style/images/initiative.jpg" alt="Enter the Arena" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="relative w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-4">
+                                    <h3 class="font-heading text-4xl text-[#a1722f] text-shadow">ENTER THE ARENA</h3>
+                                    <button class="mt-3 px-5 py-2 font-bold text-[#a1722f] bg-[#221502] hover:bg-[#401a11] shadow-md rounded-md font-heading">JOIN THE TOURNAMENT</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 right-3 flex space-x-2">
+                            <button @click="activeSlide = activeSlide > 1 ? activeSlide - 1 : totalSlides" class="px-3 py-1 text-xs bg-black bg-opacity-60 text-white rounded-md shadow-md">&lt;</button>
+                            <button @click="activeSlide = activeSlide < totalSlides ? activeSlide + 1 : 1" class="px-3 py-1 text-xs bg-black bg-opacity-60 text-white rounded-md shadow-md">&gt;</button>
+                        </div>
+                    </div>
+
+                    <!-- Main News Section -->
+                    <div class="mt-3 p-4 space-y-4 shadow-inner bg-[#221502]/40 rounded-md">
+                        
+                        <!-- News Card 1 -->
+                        <article class="shadow-lg rounded-md overflow-hidden" x-data="{ open: true }">
+                            <header @click="open = !open" class="news-card-header p-3 flex justify-between items-center cursor-pointer">
+                                <h1 class="font-heading text-xl">The Siege of Blackwood Keep</h1>
+                                <button class="text-[#a1722f]/90 hover:text-[#a1722f]"><i class="fas" :class="open ? 'fa-minus' : 'fa-plus'"></i></button>
+                            </header>
+                            <div x-show="open" x-transition class="p-4 bg-[#5d170b]/50">
+                                <p class="text-xs text-[#a1722f]/75 border-b border-[#221502] pb-2 mb-3">Posted by the Chronicler <span class="text-[#a1722f]/50">07-22-25</span></p>
+                                <p class="text-[#a1722f]/90 text-sm">A new threat emerges from the shadowed forests. The armies of the Shadow Syndicate lay siege to Blackwood Keep. Heroes are needed to defend the realm!</p>
+                            </div>
+                        </article>
+                        
+                        <!-- News Card 2 -->
+                        <article class="shadow-lg rounded-md overflow-hidden" x-data="{ open: false }">
+                            <header @click="open = !open" class="news-card-header p-3 flex justify-between items-center cursor-pointer">
+                                <h1 class="font-heading text-xl">New Fan Submissions</h1>
+                                <button class="text-[#a1722f]/90 hover:text-[#a1722f]"><i class="fas" :class="open ? 'fa-minus' : 'fa-plus'"></i></button>
+                            </header>
+                            <div x-show="open" x-transition class="p-4 bg-[#5d170b]/50">
+                                <p class="text-xs text-[#a1722f]/75 border-b border-[#221502] pb-2 mb-3">Posted by the Loremaster <span class="text-[#a1722f]/50">07-22-25</span></p>
+                                <p class="text-[#a1722f]/90 text-sm">The Fan Art Section has been updated with 3 new glorious artworks from the community.</p>
+                            </div>
+                        </article>
+                        
+                        <!-- News Archives Button -->
+                        <div class="text-center py-2">
+                            <button class="px-6 py-2 font-bold font-heading text-[#a1722f] bg-[#221502] hover:bg-[#401a11] shadow-md rounded-md">VIEW NEWS ARCHIVES</button>
+                        </div>
+
+                        <!-- Three Column Teaser Section -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+                            <div class="ornate-border p-1 rounded-md"><div class="bg-[#221502]/50 p-3 rounded"><h3 class="font-heading text-[#a1722f] text-center text-lg">Contests</h3><img src="https://dnd.nerdygamertools.com/style/images/dice.jpg" alt="Contests" class="w-full h-24 object-cover my-2 shadow-inner rounded"><a href="#" class="block text-right text-[#a1722f] hover:text-[#b98d4a] text-sm font-bold font-heading">MORE &raquo;</a></div></div>
+                            <div class="ornate-border p-1 rounded-md"><div class="bg-[#221502]/50 p-3 rounded"><h3 class="font-heading text-[#a1722f] text-center text-lg">Fan Art</h3><img src="https://dnd.nerdygamertools.com/style/images/initiative.jpg" alt="Fan Art" class="w-full h-24 object-cover my-2 shadow-inner rounded"><a href="#" class="block text-right text-[#a1722f] hover:text-[#b98d4a] text-sm font-bold font-heading">MORE &raquo;</a></div></div>
+                            <div class="ornate-border p-1 rounded-md"><div class="bg-[#221502]/50 p-3 rounded"><h3 class="font-heading text-[#a1722f] text-center text-lg">Wallpapers</h3><img src="https://dnd.nerdygamertools.com/style/images/compendium.jpg" alt="Wallpapers" class="w-full h-24 object-cover my-2 shadow-inner rounded"><a href="#" class="block text-right text-[#a1722f] hover:text-[#b98d4a] text-sm font-bold font-heading">MORE &raquo;</a></div></div>
+                        </div>
+
+                        <!-- Community Spotlight -->
+                        <div class="ornate-border p-1 rounded-md">
+                            <div class="panel-header p-3 rounded-t-sm"><h2 class="font-heading text-xl text-[#a1722f]">Community Spotlight</h2></div>
+                            <div class="panel-content-dark p-4">
+                                <h3 class="font-heading font-bold text-lg text-[#a1722f]">Win A Real Tankard O' Terror!</h3>
+                                <p class="text-xs text-[#a1722f]/75 mb-2">Nethaera on 10/05/10</p>
+                                <div class="flex flex-col sm:flex-row gap-4">
+                                    <div class="text-sm text-[#a1722f]/90 space-y-3">
+                                        <p>Still no Tankard O' Terror of your own? Have no fear, The Instance is running a contest in which you could win one to add to your collection!</p>
+                                        <p>Have you made or seen something that you think deserves to be on the Community Watch? Send us a link at <a href="#" class="text-[#a1722f] hover:underline">community@realm.com</a>.</p>
+                                    </div>
+                                    <img src="https://placehold.co/100x100/221502/a1722f?text=Tankard" alt="Tankard O' Terror Placeholder" class="w-24 h-24 object-cover shadow-inner flex-shrink-0 rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- ======================================================= -->
+                <!--                    RIGHT SIDEBAR                        -->
+                <!-- ======================================================= -->
+                <aside class="space-y-3 hidden xl:block">
+                    <!-- Promo Box 1 -->
+                    <div class="relative shadow-lg h-40 rounded-md overflow-hidden">
+                        <img src="https://dnd.nerdygamertools.com/style/images/sheet.jpg" alt="Get the Expansion" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="relative w-full h-full flex items-end justify-center pb-3 bg-gradient-to-t from-black/80 to-transparent rounded-md">
+                            <button class="font-heading font-bold text-[#a1722f] px-4 py-2 bg-[#221502] hover:bg-[#401a11] shadow-md text-sm rounded-md">GET THE EXPANSION</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links Box -->
+                    <div class="font-heading text-[#a1722f] rounded-md overflow-hidden">
+                        <h2 class="panel-header px-3 py-2 text-lg shadow-lg">Quick Links</h2>
+                        <div class="bg-[#221502]/50 p-2 shadow-inner">
+                            <ul class="grid grid-cols-2 gap-x-2 text-sm text-[#a1722f]/90">
+                                <li><a href="#" class="hover:text-[#a1722f] block py-1.5"><i class="fas fa-user-circle fa-fw mr-2 text-[#a1722f]"></i> Account</a></li>
+                                <li><a href="#" class="hover:text-[#a1722f] block py-1.5"><i class="fas fa-life-ring fa-fw mr-2 text-[#a1722f]"></i> Support</a></li>
+                                <li><a href="#" class="hover:text-[#a1722f] block py-1.5"><i class="fas fa-shield-alt fa-fw mr-2 text-[#a1722f]"></i> Parental</a></li>
+                                <li><a href="#" class="hover:text-[#a1722f] block py-1.5"><i class="fas fa-server fa-fw mr-2 text-[#a1722f]"></i> Realm Status</a></li>
+                                <li><a href="#" class="hover:text-[#a1722f] block py-1.5"><i class="fas fa-key fa-fw mr-2 text-[#a1722f]"></i> Password</a></li>
+                                <li><a href="#" class="hover:text-[#a1722f] block py-1.5"><i class="fas fa-file-alt fa-fw mr-2 text-[#a1722f]"></i> Patch Notes</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Screenshot of the Day Box -->
+                    <div class="shadow-lg bg-[#5d170b] p-0.5 rounded-md">
+                        <div class="border border-[#221502] bg-[#5d170b]/30 p-3 rounded-md">
+                            <h3 class="font-heading text-lg text-[#a1722f] mb-2">Screenshot of the Day</h3>
+                            <a href="#">
+                                <img src="https://placehold.co/300x150/5d170b/a1722f?text=Dark+Castle" alt="Screenshot of the Day" class="shadow-inner h-36 w-full object-cover rounded">
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- ======================================================= -->
+            <!--                        FOOTER                           -->
+            <!-- ======================================================= -->
+            <footer class="mt-3">
+                <!-- Three Column Layout -->
+                <div class="footer-content grid grid-cols-1 md:grid-cols-3 gap-8 text-[#a1722f]/90 p-6">
+                    <!-- About Column -->
+                    <div>
+                        <h3 class="font-heading text-lg text-[#a1722f] mb-3">About Us</h3>
+                        <p class="text-sm mb-4">Welcome to Modern Fantasy, the ultimate destination for adventurers. Explore vast kingdoms, battle fierce monsters, and forge your legend in a world of magic and mystery.</p>
+                        <button class="font-heading text-sm font-bold text-[#a1722f] bg-[#221502] hover:bg-[#401a11] px-4 py-2 rounded-md">READ MORE</button>
+                    </div>
+                    <!-- Quick Links Column -->
+                    <div>
+                        <h3 class="font-heading text-lg text-[#a1722f] mb-3">Quick Links</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-[#a1722f]">The Game</a></li>
+                            <li><a href="#" class="hover:text-[#a1722f]">Tournaments</a></li>
+                            <li><a href="#" class="hover:text-[#a1722f]">Marketplace</a></li>
+                            <li><a href="#" class="hover:text-[#a1722f]">Support</a></li>
+                        </ul>
+                    </div>
+                    <!-- Legal Column -->
+                    <div>
+                        <h3 class="font-heading text-lg text-[#a1722f] mb-3">Legal</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-[#a1722f]">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-[#a1722f]">Terms of Service</a></li>
+                            <li><a href="#" class="hover:text-[#a1722f]">Terms of Use</a></li>
+                            <li><a href="#" class="hover:text-[#a1722f]">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Bottom Bar -->
+                <div class="footer-bar flex flex-col sm:flex-row items-center justify-between px-4 py-3 rounded-b-md">
+                    <div class="text-xs text-[#a1722f]/75 text-center sm:text-left mb-2 sm:mb-0">
+                        &copy; 2025 Modern Fantasy. All Rights Reserved. <br class="sm:hidden"> Designed by You.
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-[#a1722f] hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-[#a1722f] hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-[#a1722f] hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-[#a1722f] hover:text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!--                   CUSTOM SCRIPTS                        -->
+    <!-- ======================================================= -->
+    <!-- No custom script needed here as Alpine.js handles the slider directly in the HTML -->
+</body>
+</html>
