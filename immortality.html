@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World of Immortality | The best in Private Server Emulation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .slide { display: none; }
+    .slide.active { display: block; }
+  </style>
+</head>
+<body class="bg-[#222] text-white font-sans">
+  <header>
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 ">
+      <img src="utility/images/toplogo.png" alt="logo" class="w-48" />
+      <nav>
+        <ul class="flex flex-wrap gap-2">
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Home</a></li>
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Connect</a></li>
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Register</a></li>
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Forums</a></li>
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Vote</a></li>
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Donate</a></li>
+          <li><a href="#" class="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded text-sm">Tools</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-[url('utility/images/header_text_bg.jpg')] bg-top bg-repeat-x py-16">
+    <div class="max-w-screen-xl mx-auto px-4 text-center bg-[#272727] border border-[#373737] p-4">
+      <h1 class="text-3xl font-bold text-white">World of Immortality</h1>
+      <p class="text-lg text-gray-300 mt-2">Setting a new standard for private server emulation.</p>
+    </div>
+
+    <div class="max-w-screen-xl mx-auto mt-8 px-4 flex justify-center">
+      <div class="relative w-[600px] h-[400px] overflow-hidden">
+        <div class="slide active absolute inset-0 transition-opacity duration-700">
+          <img src="utility/images/simple_img_1.jpg" class="w-full h-full object-cover" alt="Slide 1">
+          <div class="absolute bottom-4 left-4 bg-black bg-opacity-60 px-4 py-2 rounded text-white text-xl">Welcome to Immortality</div>
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-700">
+          <img src="utility/images/simple_img_2.jpg" class="w-full h-full object-cover" alt="Slide 2">
+          <div class="absolute bottom-4 left-4 bg-black bg-opacity-60 px-4 py-2 rounded text-white text-xl">Blizzlike Experience</div>
+        </div>
+        <div class="slide absolute inset-0 transition-opacity duration-700">
+          <img src="utility/images/simple_img_4.jpg" class="w-full h-full object-cover" alt="Slide 3">
+          <div class="absolute bottom-4 left-4 bg-black bg-opacity-60 px-4 py-2 rounded text-white text-xl">Join the Battle</div>
+        </div>
+        <button onclick="plusSlides(-1)" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded">❮</button>
+        <button onclick="plusSlides(1)" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded">❯</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 py-10">
+    <div class="lg:col-span-2 space-y-8">
+      <section class="bg-gray-200 text-black p-6 rounded">
+        <h2 class="text-xl font-bold mb-4">Recent News</h2>
+        <article class="mb-4">
+          <h3 class="font-bold">Recruiting Contest!</h3>
+          <p class="text-sm text-gray-600">Posted by Sero on 3/23/10</p>
+          <p class="mt-1">Bring your friends and win a fully-geared donor character. Each recruit gets you closer to big rewards!</p>
+        </article>
+        <article>
+          <h3 class="font-bold">Egypt: Welcome Back</h3>
+          <p class="text-sm text-gray-600">Posted by Sero on 02/03/11</p>
+          <p class="mt-1">We welcome back our Egyptian players after the national internet shutdown.</p>
+        </article>
+      </section>
+
+      <section class="bg-gray-200 text-black p-6 rounded">
+        <h2 class="text-xl font-bold mb-4">Server Information</h2>
+        <div>
+          <h3 class="font-semibold text-blue-700">Immortality (Midrate)</h3>
+          <p>10x XP, 24/7 GM support, scripted raids and PvP balance.</p>
+        </div>
+        <div class="mt-4">
+          <h3 class="font-semibold text-red-500">Envy (Funserver)</h3>
+          <p>100x XP, heroic vanilla dungeons, custom vendors and epic gear for all!</p>
+        </div>
+      </section>
+    </div>
+
+    <aside class="bg-gray-800 text-white p-6 rounded">
+      <h2 class="text-xl font-bold mb-4">Server Status</h2>
+      <p><strong>Immortality:</strong> Online — 31 Players</p>
+      <p><strong>Envy:</strong> Online — 0 Players</p>
+      <h3 class="mt-6 font-semibold">Top PvP Teams</h3>
+      <ul class="list-disc list-inside text-sm mt-2">
+        <li>2v2: Dotz Hotz And OPshotz</li>
+        <li>3v3: omg i kill the Bunny</li>
+        <li>5v5: FAIVE V FAIVE TAKES SKIL</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="bg-black text-gray-400 text-center py-6 text-sm">
+    <p>&copy; 2009-2011 World of Immortality. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let slideIndex = 0;
+    let slides = document.querySelectorAll(".slide");
+    let slideInterval = setInterval(() => plusSlides(1), 7000);
+
+    function showSlides(n) {
+      slides.forEach((slide, index) => {
+        slide.classList.remove("active");
+        if (index === n) {
+          slide.classList.add("active");
+        }
+      });
+    }
+
+    function plusSlides(n) {
+      slideIndex = (slideIndex + n + slides.length) % slides.length;
+      showSlides(slideIndex);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => showSlides(slideIndex));
+  </script>
+</body>
+</html>
